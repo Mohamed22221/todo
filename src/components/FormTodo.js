@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React from "react";
 
 const FormTodo = ({
   setValues,
@@ -12,7 +12,7 @@ const FormTodo = ({
   // creating a ID for every todo
   const date = new Date();
   const time = date.getTime();
-  let mydate = date.toUTCString();
+  let mydate = date.toLocaleString();
 
   // creating a todo object
   let todoObject = {
