@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
-import ArchiveIcon from "@mui/icons-material/Archive";
+
 const ShowTodo = ({ todo, setTodo, handleEdit }) => {
   // Delete from list
   const handleDelete = (id) => {
@@ -13,14 +13,10 @@ const ShowTodo = ({ todo, setTodo, handleEdit }) => {
 
   // Add/Remove checked item from list
   const [checked, setChecked] = useState([]);
-  const date = new Date();
-  const mydate = date.toUTCString();
-
   const handleCheck = (event) => {
     var updatedList = [...checked];
     if (event.target.checked) {
       updatedList = [...checked, event.target.value];
-     
     } else {
       updatedList.splice(checked.indexOf(event.target.value), 1);
     }
@@ -28,10 +24,9 @@ const ShowTodo = ({ todo, setTodo, handleEdit }) => {
   };
 
   // Return classes based on whether item is checked
-  
-  var isChecked = (item) => 
+  var isChecked = (item) =>
     checked.includes(item) ? "checked-item" : "todo-item";
-    
+
   return (
     <div className="main-card">
       {todo.map((item) => {
@@ -56,12 +51,6 @@ const ShowTodo = ({ todo, setTodo, handleEdit }) => {
               <h4>created At</h4>
               <span>{item.create_at}</span>
             </div>
-            {checked.includes(item.todoValue.title) ? (
-              <div>
-                <h4>Finished At</h4>
-                <span>{mydate}</span>
-              </div>
-            ) : ""}
             <div>
               <DeleteOutlineIcon onClick={() => handleDelete(item.id)} />
               <EditIcon onClick={() => handleEdit(item)} />

@@ -9,7 +9,6 @@ const FormTodo = ({
   toggleForm,
   setToggleForm,
 }) => {
-  console.log(detailsTodo, "detailsTododetailsTodo");
   // creating a ID for every todo
   const date = new Date();
   const time = date.getTime();
@@ -32,7 +31,7 @@ const FormTodo = ({
       description: "",
     });
   };
-  console.log(values);
+
   // Edit a todo object
   const handleSubmitEdit = (e) => {
     e.preventDefault();

@@ -15,7 +15,7 @@ const Weather = () => {
   const getWeather = async () => {
     const apiid = "e8d7d877ea765325ec20112280ea8cd3";
     const urlweather = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiid}`;
-    //url weathear have proplem in api kek
+    //url weathear have proplem in api key
     try {
       await navigator.geolocation.getCurrentPosition((position) => {
         setLat(position.coords.latitude);
@@ -25,15 +25,12 @@ const Weather = () => {
       const response = await axios.get(
         `http://api.weatherapi.com/v1/current.json?key=6e6263afb84f44279f731543222510&q=${lat},${long}&aqi=no`
       );
-      console.log(response.data);
       setCity(response.data.location.name);
       setTemp(response.data.current.temp_f);
       setWind(response.data.current.wind_mph);
       setWindDir(response.data.current.wind_dir);
       setGust(response.data.current.gust_mph);
       setPrecip(response.data.current.precip_in);
-
-
     } catch (err) {
       console.error(err);
     }

@@ -1,7 +1,7 @@
 
 import "./App.css";
 import FormTodo from "./components/FormTodo";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import ShowTodo from "./components/ShowTodo";
 import Weather from "./components/Weather";
 
@@ -9,14 +9,13 @@ function App() {
   const startData = {
     title: "",
     description: "",
-    cheacked : false
   };
-
+  // edit one todo
   const [values, setValues] = useState(startData);
   const [todo, setTodo] = useState([]);
   const [toggleForm, setToggleForm] = useState(true);
   const [detailsTodo, setDetailsItem] = useState({});
-
+  // edit one todo
   const handleEdit = (item) => {
     setToggleForm(false);
     setDetailsItem(item);
@@ -25,10 +24,10 @@ function App() {
       description: item.todoValue.description,
     });
   };
-
+  const WeatherMemo = useMemo(() =>  <Weather /> , [] )
   return (
     <div className="App">
-      <Weather />
+      {WeatherMemo}
       <h1>Todo App</h1>
       <FormTodo
         setValues={setValues}
@@ -41,7 +40,6 @@ function App() {
       />
       <ShowTodo
         todo={todo}
-        values={values}
         setTodo={setTodo}
         handleEdit={handleEdit}
       />
