@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditIcon from "@mui/icons-material/Edit";
+import { Key } from "@mui/icons-material";
 
 const ShowTodo = ({ todo, setTodo, handleEdit }) => {
+  const [checked, setChecked] = useState([]);
   // Delete from list
   const handleDelete = (id) => {
     const filtered = todo.filter((item) => {
       return item.id !== id;
     });
     setTodo(filtered);
+    setChecked(filtered)
   };
 
   // Add/Remove checked item from list
-  const [checked, setChecked] = useState([]);
+
   const handleCheck = (event) => {
     var updatedList = [...checked];
     if (event.target.checked) {
@@ -31,7 +34,7 @@ const ShowTodo = ({ todo, setTodo, handleEdit }) => {
     <div className="main-card">
       {todo.map((item) => {
         return (
-          <div className={`${isChecked(item.todoValue.title)}  `}>
+          <div className={`${isChecked(item.todoValue.title)} `} key={item.id}>
             <div>
               <input
                 value={item.todoValue.title}
