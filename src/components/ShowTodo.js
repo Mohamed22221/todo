@@ -4,19 +4,20 @@ import EditIcon from "@mui/icons-material/Edit";
 import ArchiveIcon from '@mui/icons-material/Archive';
 
 const ShowTodo = ({ todo , checked , handleDelete, handleEdit , handleCheck , handelListArchive}) => {
-
+  console.log(checked)
   // Return classes based on whether item is checked
-  var isChecked = (item) =>
+  const isChecked = (item) =>
     checked.includes(item) ? "checked-item" : "todo-item";
 
   return (
     <div className="main-card">
       {todo.map((item) => {
+        console.log(isChecked(item.id))
         return (
-          <div className={`${isChecked(item.todoValue.title)} `} key={item.id}>
+          <div className={`${isChecked(item.id)} `} key={item.id}>
             <div>
               <input
-                value={item.todoValue.title}
+                value={item.id}
                 type="checkbox"
                 onChange={handleCheck}
               />
@@ -34,7 +35,7 @@ const ShowTodo = ({ todo , checked , handleDelete, handleEdit , handleCheck , ha
               <span>{item.create_at}</span>
             </div>
             <div>
-              <DeleteOutlineIcon onClick={() => handleDelete(item.id)} />
+              <DeleteOutlineIcon onClick={() => handleDelete(item)} />
               <EditIcon onClick={() => handleEdit(item)} />
               <ArchiveIcon onClick={() => handelListArchive(item)} />
 
@@ -42,7 +43,8 @@ const ShowTodo = ({ todo , checked , handleDelete, handleEdit , handleCheck , ha
           </div>
         );
       })}
-      <p>{`Items checked are: ${checked.length}`}</p>
+            <p>{`Items checked are: ${checked.length}`}</p>
+
     </div>
   );
 };

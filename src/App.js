@@ -31,14 +31,20 @@ function App() {
 
   // Delete from list
 
-  const handleDelete = (id) => {
+  const handleDelete = (list) => {
     const filtered = todo.filter((item) => {
-      return item.id !== id;
+      return item.id !== list.id;
     });
-    setTodo(filtered);
-    setChecked(filtered);
-  };
+    const filterdChecked = todo.filter((item) =>{
+      return item.id !== list.id;
+    }).map((item) =>{
+      return item.id
+    })
 
+    setTodo(filtered);
+    setChecked(filterdChecked);
+  };
+  console.log(checked)
   //handel cheacked 
 
   const handleCheck = (event) => {
@@ -53,9 +59,9 @@ function App() {
 
   // handel list Archive
 
-  const handelListArchive = (item) => {
-    setListArchive((current) => [...current, item]);
-    handleDelete(item.id);
+  const handelListArchive = (list) => {
+    setListArchive((current) => [...current, list]);
+    handleDelete(list);
   };
   // handel list urchive
 
@@ -63,6 +69,7 @@ function App() {
     const filtered = listArchive.filter((item) => {
       return item.id !== list.id;
     });
+
     setListArchive(filtered);
     setTodo((current) => [...current, list]);
   };

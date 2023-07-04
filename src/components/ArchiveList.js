@@ -5,6 +5,7 @@ const ArchiveList = ({ listArchive, handelUnarchive }) => {
     <div className="main-card">
       <h1>list archived</h1>
       {listArchive.map((item) => {
+        console.log(item.id , "idididid")
         return (
           <div className="todo-item" key={item.id}>
             <div>

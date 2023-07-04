@@ -12,11 +12,12 @@ const FormTodo = ({
   // creating a ID for every todo
   const date = new Date();
   const time = date.getTime();
+  const strTime = time.toString()
   let mydate = date.toLocaleString();
 
   // creating a todo object
   let todoObject = {
-    id: time,
+    id: strTime,
     todoValue: values,
     create_at: mydate,
   };
